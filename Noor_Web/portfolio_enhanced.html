@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noor Fathima | Full-Stack Developer & Data Scientist</title>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #020202;
+            --gold: #c5a059;
+            --ice: #00f2ff;
+            --text: #e5e5e5;
+            --dim: #a0a0a0;
+            --border: rgba(197, 160, 89, 0.3);
+        }
+
+        /* CUSTOM DRAGON CURSOR */
+        *, *::before, *::after { 
+            margin: 0; padding: 0; box-sizing: border-box; 
+            cursor: url('https://img.icons8.com/ios-filled/30/c5a059/dragon.png'), pointer !important;
+        }
+        html, body, nav, nav *, a, a *, button, button * {
+            cursor: url('https://img.icons8.com/ios-filled/30/c5a059/dragon.png'), pointer !important;
+        }
+        
+        html { font-size: 14px; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Space Grotesk', sans-serif; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth; 
+            line-height: 1.6; 
+        }
+        
+        /* FLOATING SNOW PARTICLES - NEW GOT EFFECT */
+        .snow-particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: snowfall linear infinite;
+        }
+        @keyframes snowfall {
+            0% { transform: translateY(-10vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(110vh) translateX(100px); opacity: 0; }
+        }
+
+        /* FIX 5: ENHANCED CINEMATIC GOT INTRO */
+        #intro-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #000000 0%, #1a0f0f 50%, #000000 100%);
+            z-index: 10001; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; transition: opacity 1.5s ease-in-out;
+            overflow: hidden;
+        }
+        .fire-bg {
+            position: absolute; width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 77, 0, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(197, 160, 89, 0.1) 0%, transparent 50%);
+            animation: fire-move 12s infinite alternate;
+        }
+        @keyframes fire-move { 
+            from { transform: translate(-10%, -10%) rotate(0deg); } 
+            to { transform: translate(10%, 10%) rotate(5deg); } 
+        }
+        
+        /* FIX 5: ULTRA ENHANCED INTRO LOGO WITH DRAMATIC EFFECTS */
+        .intro-logo-container { position: relative; text-align: center; z-index: 10002; }
+        .intro-logo { 
+            font-family: 'Cinzel', serif; 
+            font-size: 5.5rem; 
+            color: var(--gold); 
+            letter-spacing: 25px; 
+            text-transform: uppercase; 
+            text-shadow: 0 0 40px var(--gold), 0 0 80px rgba(197, 160, 89, 0.5), 0 10px 30px rgba(0, 0, 0, 0.8);
+            animation: logo-reveal-enhanced 3.5s forwards;
+            opacity: 0;
+            font-weight: 900;
+            position: relative;
+        }
+        @keyframes logo-reveal-enhanced { 
+            0% { 
+                opacity: 0; 
+                letter-spacing: 60px; 
+                filter: blur(15px); 
+                transform: scale(0.8) translateY(-30px);
+            }
+            50% {
+                opacity: 0.5;
+                letter-spacing: 35px;
+                filter: blur(8px);
+            }
+            100% { 
+                opacity: 1; 
+                letter-spacing: 20px; 
+                filter: blur(0); 
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Glowing underline effect for intro */
+        .intro-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            animation: underline-grow 2s ease 2s forwards;
+            box-shadow: 0 0 20px var(--gold);
+        }
+        @keyframes underline-grow {
+            to { width: 80%; }
+        }
+
+        /* Enhanced cinematic music note pulse animation */
+        .audio-indicator {
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px; margin-top: 30px; opacity: 0;
+            animation: fade-in-audio 1s ease 2s forwards;
+        }
+        .audio-indicator span {
+            font-size: 0.85rem; color: var(--gold); letter-spacing: 4px;
+            text-transform: uppercase; font-family: 'Cinzel', serif;
+        }
+        .audio-bars {
+            display: flex; gap: 4px; align-items: flex-end; height: 20px;
+        }
+        .audio-bars div {
+            width: 3px; background: var(--gold); border-radius: 2px;
+            animation: audio-wave 0.6s infinite alternate ease-in-out;
+            box-shadow: 0 0 8px var(--gold);
+        }
+        .audio-bars div:nth-child(1) { height: 6px; animation-delay: 0s; }
+        .audio-bars div:nth-child(2) { height: 14px; animation-delay: 0.1s; }
+        .audio-bars div:nth-child(3) { height: 20px; animation-delay: 0.2s; }
+        .audio-bars div:nth-child(4) { height: 12px; animation-delay: 0.3s; }
+        .audio-bars div:nth-child(5) { height: 8px; animation-delay: 0.4s; }
+        @keyframes audio-wave { 
+            0% { transform: scaleY(0.4); opacity: 0.5; } 
+            100% { transform: scaleY(1); opacity: 1; } 
+        }
+        @keyframes fade-in-audio { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Enhanced ripple golden ring animation */
+        .intro-ring {
+            position: absolute; width: 180px; height: 180px;
+            border: 3px solid var(--gold); border-radius: 50%;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            animation: ring-pulse-enhanced 2.5s infinite ease-out;
+            box-shadow: 0 0 30px var(--gold), inset 0 0 20px rgba(197, 160, 89, 0.3);
+        }
+        @keyframes ring-pulse-enhanced {
+            0% { 
+                transform: translate(-50%, -50%) scale(1); 
+                opacity: 0.9; 
+                border-width: 3px;
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(3); 
+                opacity: 0; 
+                border-width: 1px;
+            }
+        }
+        .dragon-icon-wrap { position: relative; display: inline-block; }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed; width: 100%; padding: 1.5rem 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px);
+            z-index: 9999; border-bottom: 2px solid var(--gold);
+        }
+        .nav-logo { 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.8rem; 
+            font-weight: 900; 
+            color: var(--gold); 
+            text-decoration: none; 
+            pointer-events: auto;
+            text-shadow: 0 0 15px var(--gold);
+        }
+        .nav-links { display: flex; gap: 40px; pointer-events: auto; }
+        .nav-links a { 
+            color: #fff; text-decoration: none; font-weight: 700; 
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; 
+            transition: 0.3s; z-index: 10000; position: relative; 
+        }
+        .nav-links a:hover { color: var(--gold); text-shadow: 0 0 10px var(--gold); }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; padding: 120px 8% 80px;
+            background: radial-gradient(circle at 75% 35%, #1a1525 0%, transparent 50%);
+            position: relative;
+        }
+        .hero-grid { 
+            display: grid; 
+            grid-template-columns: 1.2fr 0.8fr; 
+            gap: 60px; 
+            align-items: center; 
+            width: 100%; 
+        }
+        .hero-title { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(2rem, 4.5vw, 4.5rem); 
+            line-height: 1.1; 
+            font-weight: 900; 
+            margin-bottom: 1.5rem; 
+            color: #fff; 
+        }
+        .hero-title span { color: var(--gold); }
+        .hero-desc { 
+            font-size: 1.15rem; 
+            color: var(--dim); 
+            max-width: 650px; 
+            margin-bottom: 2.5rem; 
+            line-height: 1.8; 
+        }
+
+        /* FIX 2: PROFILE PICTURE PERFECTLY CENTERED */
+        .profile-container { 
+            position: relative; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .profile-shield-outer {
+            position: relative;
+            width: 340px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-shield-outer::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            background: radial-gradient(ellipse, rgba(197,160,89,0.3) 0%, transparent 70%);
+            filter: blur(20px);
+            z-index: 0;
+            border-radius: 0 0 50% 50%;
+        }
+
+        .profile-shield-clip {
+            position: relative;
+            z-index: 2;
+            width: 280px;
+            height: 340px;
+            overflow: hidden;
+            clip-path: polygon(50% 0%, 100% 12%, 100% 60%, 78% 82%, 50% 100%, 22% 82%, 0% 60%, 0% 12%);
+            border-radius: 2px;
+            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            filter: drop-shadow(0 0 16px rgba(197,160,89,0.5));
+            margin: 0 auto; /* FIX 2: Center alignment */
+        }
+        .profile-shield-clip:hover {
+            filter: drop-shadow(0 0 28px rgba(0,242,255,0.6));
+            transform: scale(1.04);
+        }
+
+        .profile-img-shield {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%;
+            display: block;
+        }
+
+        .profile-shield-svg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .shield-corner {
+            position: absolute;
+            color: var(--gold);
+            z-index: 4;
+        }
+
+        /* SECTION STYLING */
+        section { padding: 120px 8%; border-bottom: 1px solid var(--border); }
+        .sec-title { 
+            font-family: 'Cinzel', serif; 
+            font-size: 2.8rem; 
+            font-weight: 900; 
+            margin-bottom: 4rem; 
+            color: #fff; 
+            text-transform: uppercase; 
+            letter-spacing: -1px; 
+        }
+
+        /* PROFESSIONAL STATEMENT */
+        .statement-card { 
+            background: #080808; 
+            padding: 60px; 
+            border: 1px solid var(--gold); 
+            border-radius: 20px; 
+            position: relative; 
+        }
+        .statement-card i { 
+            position: absolute; 
+            font-size: 4rem; 
+            color: var(--gold); 
+            opacity: 0.2; 
+        }
+        .top-left { top: 40px; left: 40px; }
+        .bottom-right { bottom: 40px; right: 40px; }
+        .para-detail { 
+            font-size: 1.15rem; 
+            color: var(--text); 
+            margin-bottom: 30px; 
+            line-height: 2; 
+            text-align: justify; 
+        }
+        .para-detail b { color: var(--gold); font-weight: 700; }
+
+        /* TIMELINE - SWORD BULLETS */
+        .timeline-citadel { border-left: 3px solid var(--gold); padding-left: 60px; margin-left: 30px; }
+        .t-fortress { position: relative; padding-bottom: 80px; }
+        .t-fortress::before { 
+            content: "\f6ad"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; left: -82px; top: 0; color: var(--gold); 
+            font-size: 2rem; background: var(--bg); padding: 8px; 
+            border: 2px solid var(--gold); border-radius: 50%;
+        }
+        .sword-list { list-style: none; margin-top: 30px; }
+        .sword-list li { 
+            font-size: 1.05rem; 
+            color: var(--dim); 
+            margin-bottom: 20px; 
+            padding-left: 50px; 
+            position: relative; 
+        }
+        .sword-list li::before { 
+            content: "⚔";
+            position: absolute; 
+            left: 0; 
+            color: var(--gold); 
+            font-size: 1.1rem;
+            top: 2px;
+        }
+
+        /* VERTICAL SKILLS */
+        .arsenal-stack { display: flex; flex-direction: column; gap: 36px; }
+        .skill-module {
+            background: #0d0d0d; 
+            padding: 48px 60px; 
+            border-radius: 24px; 
+            border: 1px solid var(--border);
+            display: grid; 
+            grid-template-columns: 120px 1fr; 
+            gap: 50px; 
+            align-items: center; 
+            transition: 0.5s;
+        }
+        .skill-module:hover { 
+            border-color: var(--ice); 
+            transform: translateX(25px); 
+            background: #000; 
+            box-shadow: 0 0 60px rgba(0, 242, 255, 0.1); 
+        }
+        /* FIX 3: AI/NLP ICON SIZE MATCHED */
+        .skill-module i { 
+            font-size: 5rem; 
+            color: var(--gold); 
+            text-align: center; 
+            filter: drop-shadow(0 0 14px var(--gold)); 
+        }
+        .skill-info h4 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 15px; 
+            color: #fff; 
+        }
+        .skill-info p { 
+            font-size: 1rem; 
+            color: var(--dim); 
+            line-height: 1.9; 
+        }
+
+        /* PROJECTS REALM */
+        .realm-chronicle { display: flex; flex-direction: column; gap: 60px; }
+        .p-castle-card {
+            background: #080808; 
+            padding: 70px 80px; 
+            border-radius: 24px; 
+            border: 1px solid var(--gold);
+            transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+            position: relative;
+        }
+        .p-castle-card:hover { 
+            transform: scale(1.02); 
+            background: #000; 
+            box-shadow: 0 0 100px rgba(197, 160, 89, 0.15); 
+            border-color: var(--ice); 
+        }
+        .p-banners { display: flex; gap: 16px; margin-bottom: 30px; }
+        .p-banner { 
+            border: 2px solid var(--gold); 
+            color: var(--gold); 
+            font-size: 0.8rem; 
+            padding: 8px 22px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+        }
+        .p-castle-card h3 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 2.8rem; 
+            color: #fff; 
+            margin-bottom: 24px; 
+            letter-spacing: -1px; 
+        }
+        .p-castle-card p { 
+            font-size: 1.05rem; 
+            color: var(--dim); 
+            line-height: 2; 
+            text-align: justify; 
+        }
+
+        /* NEW SECTION: GOT ACHIEVEMENTS */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .achievement-card {
+            background: linear-gradient(135deg, #0a0a0a 0%, #050505 100%);
+            padding: 50px 40px;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            text-align: center;
+            transition: 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(197,160,89,0.1) 0%, transparent 70%);
+            animation: rotate-glow 8s linear infinite;
+        }
+        @keyframes rotate-glow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .achievement-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(197,160,89,0.2);
+        }
+        .achievement-card i {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 0 20px var(--gold));
+        }
+        .achievement-card h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        .achievement-card p {
+            color: var(--dim);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* NEW: TESTIMONIALS SECTION */
+        .testimonials-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .testimonial-card {
+            background: #080808;
+            padding: 60px;
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 8rem;
+            color: var(--gold);
+            opacity: 0.1;
+            font-family: 'Cinzel', serif;
+        }
+        .testimonial-text {
+            font-size: 1.2rem;
+            color: var(--text);
+            line-height: 2;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+        }
+        .author-info h5 {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .author-info p {
+            color: var(--dim);
+            font-size: 0.9rem;
+        }
+
+        /* ROYAL CTA BUTTONS */
+        .crown-btn {
+            display: inline-flex; 
+            align-items: center; 
+            gap: 16px; 
+            padding: 16px 48px;
+            background: var(--gold); 
+            color: #000; 
+            text-decoration: none;
+            font-weight: 900; 
+            transition: 0.4s; 
+            font-size: 0.95rem; 
+            text-transform: uppercase;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+        }
+        .crown-btn:hover { 
+            background: #fff; 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 50px var(--gold); 
+        }
+
+        footer { 
+            padding: 120px 8%; 
+            text-align: center; 
+            background: #000; 
+            border-top: 5px solid var(--gold); 
+        }
+        footer h2 { font-size: 3rem !important; }
+        .social-link { 
+            color: #fff; 
+            font-size: 3.5rem; 
+            margin: 0 40px; 
+            transition: 0.5s; 
+        }
+        .social-link:hover { 
+            color: var(--gold); 
+            transform: translateY(-20px) scale(1.1); 
+        }
+
+        @media (max-width: 1200px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .profile-shield-outer { width: 280px; height: 340px; margin: 0 auto; }
+            .profile-shield-clip { width: 240px; height: 290px; }
+            .skill-module { grid-template-columns: 1fr; text-align: center; }
+            .p-castle-card { padding: 50px 30px; }
+            .achievements-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FIX 1: AUDIO DURATION INCREASED FROM 5s TO 8s -->
+    <audio id="got-theme" preload="auto">
+        <source src="theme.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="intro-overlay">
+        <div class="fire-bg"></div>
+        <div class="intro-logo-container">
+            <div class="dragon-icon-wrap">
+                <div class="intro-ring"></div>
+                <i class="fa-solid fa-dragon" style="font-size: 5.5rem; color: var(--gold); margin-bottom: 40px; filter: drop-shadow(0 0 30px var(--gold)); position:relative; z-index:2; animation: dragon-pulse 2s infinite;"></i>
+            </div>
+            <div class="intro-logo">Noor Fathima</div>
+            <div id="audio-unlock-btn" style="margin-top:50px; opacity:0; animation: fade-in-audio 1s ease 1.5s forwards;">
+                <button onclick="startIntroAudio()" style="
+                    background: transparent;
+                    border: 2px solid var(--gold);
+                    color: var(--gold);
+                    font-family: 'Cinzel', serif;
+                    font-size: 0.85rem;
+                    letter-spacing: 5px;
+                    padding: 16px 45px;
+                    text-transform: uppercase;
+                    cursor: url('https://img.icons8.com/ios-filled/30/c5a059/dragon.png'), pointer !important;
+                    transition: all 0.4s;
+                    clip-path: polygon(8% 0, 100% 0, 92% 100%, 0% 100%);
+                    box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+                " onmouseover="this.style.background='var(--gold)';this.style.color='#000';this.style.boxShadow='0 0 50px var(--gold)';"
+                   onmouseout="this.style.background='transparent';this.style.color='var(--gold)';this.style.boxShadow='0 0 30px rgba(197, 160, 89, 0.3)';">
+                    ♪ Enter Realm
+                </button>
+            </div>
+            <div class="audio-indicator" id="audio-bars-el" style="opacity:0;">
+                <div class="audio-bars">
+                    <div></div><div></div><div></div><div></div><div></div>
+                </div>
+                <span>Now Playing</span>
+                <div class="audio-bars">
+                    <div></div><div></div><div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#" class="nav-logo">NOOR_WEB</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#arsenal">Skills</a>
+            <a href="#realm">Projects</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-grid">
+            <div data-aos="fade-right">
+                <span style="color:var(--gold); font-weight:800; text-transform:uppercase; letter-spacing:8px; display:block; margin-bottom:1.2rem; font-size:0.9rem;">Full-Stack Developer & Data Scientist</span>
+                <h1 class="hero-title">Building Intelligent <span>Web</span> & Data <span>Solutions.</span></h1>
+                <p class="hero-desc">BCA Graduate specialized in building secure React architectures and Predictive Intelligence. I bridge the gap between high-performance software engineering and actionable data insights.</p>
+                <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+                    <a href="#realm" class="crown-btn">View Projects</a>
+                    <a href="resume_noor_fathima_webdev.pdf" download class="crown-btn" style="background:transparent; border: 2px solid var(--gold); color: #fff;">
+                        <i class="fas fa-scroll"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+            <div class="profile-container" data-aos="zoom-in">
+                <div class="profile-shield-outer">
+                    <svg class="profile-shield-svg" viewBox="0 0 340 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M170 6 L334 52 L334 244 L264 320 L170 394 L76 320 L6 244 L6 52 Z"
+                              stroke="#c5a059" stroke-width="3.5" fill="none" opacity="0.9"/>
+                        <path d="M170 28 L312 68 L312 238 L250 306 L170 370 L90 306 L28 238 L28 68 Z"
+                              stroke="#c5a059" stroke-width="1.2" fill="none" opacity="0.35"/>
+                        <polygon points="170,7 182,22 170,37 158,22" fill="#c5a059" opacity="1"/>
+                        <circle cx="170" cy="391" r="5.5" fill="#c5a059" opacity="0.9"/>
+                        <circle cx="8" cy="148" r="4" fill="#c5a059" opacity="0.7"/>
+                        <circle cx="332" cy="148" r="4" fill="#c5a059" opacity="0.7"/>
+                        <line x1="42" y1="56" x2="72" y2="46" stroke="#c5a059" stroke-width="1.5" opacity="0.5"/>
+                        <line x1="268" y1="46" x2="298" y2="56" stroke="#c5a059" stroke-width="1.5" opacity="0.5"/>
+                    </svg>
+                    <div class="profile-shield-clip">
+                        <img src="Noor.jpeg" alt="Noor Fathima" class="profile-img-shield">
+                    </div>
+                    <i class="fas fa-crown shield-corner" style="top:2px; left:50%; transform:translateX(-50%); font-size:0.9rem; opacity:0; z-index:5;"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 class="sec-title">Professional Statement</h2>
+        <div class="statement-card" data-aos="fade-up">
+            <i class="fas fa-chess-rook top-left"></i>
+            <i class="fas fa-dragon bottom-right"></i>
+            <p class="para-detail">I am a <b>Full-Stack Web Developer</b> with a strong foundation in Computer Applications. My journey at <b>ExcelR</b> allowed me to master the synergy between high-speed front-ends and predictive data models. I believe that modern web applications should not only respond to user input but anticipate it through data intelligence.</p>
+            <p class="para-detail">My technical expertise is built on <b>React.js, PHP, and Python</b>, allowing me to create robust digital products that ensure maximum security and scalability. I am dedicated to bridging the complex gap between software engineering and data science to build the next generation of intelligent web platforms.</p>
+        </div>
+
+        <div class="timeline-citadel" style="margin-top: 80px;">
+            <div class="t-fortress" data-aos="fade-up">
+                <h3>Experience at ExcelR</h3>
+                <span style="color:var(--gold); font-weight:800; font-size:1rem; display:block; margin-bottom:20px;">Data Science Intern | Bangalore | 2024 - 2025</span>
+                <ul class="sword-list">
+                    <li>Designed responsive web architectures using React.js and modern UI/UX principles for optimized client-side performance.</li>
+                    <li>Built classification pipelines using Logistic Regression and SVM models for automated resume parsing and categorization.</li>
+                    <li>Applied advanced NLP techniques including TF-IDF and Tokenization to clean and analyze unstructured data.</li>
+                    <li>Managed full-stack logic for mini-projects, ensuring secure database interactions and efficient API handling.</li>
+                    <li>Visualized complex data results using Matplotlib and Seaborn to derive business-critical insights.</li>
+                </ul>
+            </div>
+            <div class="t-fortress" data-aos="fade-up">
+                <h3>Education</h3>
+                <span style="color:var(--gold); font-weight:800; font-size:1rem; display:block; margin-bottom:20px;">BCA | Bapuji Institute | 2021 - 2024</span>
+                <ul class="sword-list">
+                    <li>Graduated with a focus on Software Engineering, Relational Database Management, and JavaScript Frameworks.</li>
+                    <li>Gained foundational excellence in HTML5, CSS3, and React through rigorous laboratory projects.</li>
+                    <li>Active volunteer for the Red Cross Youth Wing, managing logistics for large-scale donation camps.</li>
+                    <li>Mastered Multilingual Communication: English, Hindi, Urdu, Kannada.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="arsenal" style="background: #030303;">
+        <h2 class="sec-title">Technical Skills</h2>
+        <div class="arsenal-stack">
+            <div class="skill-module" data-aos="fade-right">
+                <i class="devicon-react-original colored"></i>
+                <div class="skill-info">
+                    <h4>Frontend Engineering</h4>
+                    <p>Expert in architecting Single Page Applications (SPAs) using React.js and JavaScript ES6+. I focus on creating responsive, fast-loading, and high-fidelity user interfaces using Flexbox, CSS Grid, and modern design systems. My focus is on optimizing state management and DOM manipulation for seamless navigation across all kingdoms of the web.</p>
+                </div>
+            </div>
+            <div class="skill-module" data-aos="fade-right" data-aos-delay="100">
+                <i class="devicon-php-plain colored"></i>
+                <div class="skill-info">
+                    <h4>Backend & Databases</h4>
+                    <p>Experienced in server-side programming using PHP and managing complex relational database systems like MySQL. I design secure backend architectures that handle intricate data logic and provide robust REST APIs for frontend integration. My priority is ensuring data integrity, query optimization, and secure server-to-client communication.</p>
+                </div>
+            </div>
+            <div class="skill-module" data-aos="fade-right" data-aos-delay="200">
+                <i class="devicon-python-plain colored"></i>
+                <div class="skill-info">
+                    <h4>Data Intelligence</h4>
+                    <p>Highly skilled in Python for data analysis and predictive modeling. Proficient in using Pandas for manipulation, NumPy for computing, and Scikit-learn for machine learning pipelines. I implement supervised and unsupervised algorithms, including SVM and K-Means, to extract strategic business insights from unstructured data populations.</p>
+                </div>
+            </div>
+            <div class="skill-module" data-aos="fade-right" data-aos-delay="300">
+                <!-- FIX 3: AI/NLP icon size matched to 5rem like other icons -->
+                <i class="fas fa-brain" style="font-size: 5rem;"></i>
+                <div class="skill-info">
+                    <h4>AI & NLP</h4>
+                    <p>Specialized in Natural Language Processing (NLP) workflows, including text cleaning, tokenization, stemming, and TF-IDF feature extraction. I build intelligent classification models and clustering applications to automate decision-making processes based on textual patterns and customer behavioral groupings.</p>
+                </div>
+            </div>
+            <div class="skill-module" data-aos="fade-right" data-aos-delay="400">
+                <i class="devicon-github-original"></i>
+                <div class="skill-info">
+                    <h4>DevTools & Deployment</h4>
+                    <p>Proficient in Git & GitHub for version control and collaborative software development. Experienced with Docker for containerization and BI tools like Tableau and Power BI for high-level data visualization. I ensure clean code practices and efficient deployment workflows for all modern digital products.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="realm">
+        <h2 class="sec-title">Featured Projects</h2>
+        <div class="realm-chronicle">
+            <div class="p-castle-card" data-aos="fade-up">
+                <div class="p-banners"><span class="p-banner">PHP</span><span class="p-banner">MySQL</span><span class="p-banner">Security</span></div>
+                <h3>Cloud Drops 2024</h3>
+                <p>Designed and developed a highly secure web-based platform for document storage. The platform utilizes a custom encryption fragmentation algorithm that splits sensitive files into multiple encrypted shards before storage in MySQL. This ensures zero unauthorized access and maximum data integrity by preventing tampering at the infrastructure level.</p>
+            </div>
+            <div class="p-castle-card" data-aos="fade-up">
+                <div class="p-banners"><span class="p-banner">Python</span><span class="p-banner">NLP</span><span class="p-banner">SVM</span></div>
+                <h3>Resume Classification AI</h3>
+                <p>Built an intelligent machine learning classifier designed to categorize resumes into job families like 'Data Science' or 'Web Development'. The system uses TF-IDF vectorization and SVM models to achieve 90%+ precision. It automates the screening process by analyzing unstructured PDF text in real-time with an optimized predictive pipeline.</p>
+            </div>
+            <div class="p-castle-card" data-aos="fade-up">
+                <div class="p-banners"><span class="p-banner">ML</span><span class="p-banner">Unsupervised</span><span class="p-banner">Clustering</span></div>
+                <h3>K-Means Data Segment</h3>
+                <p>Implemented a data segmentation application focused on identifying behavioral groupings in unlabeled datasets. The system preprocesses and normalizes raw data before applying the K-Means clustering algorithm. Model performance is evaluated using silhouette scores to find the most accurate natural groupings in user populations for strategic analysis.</p>
+            </div>
+            <div class="p-castle-card" data-aos="fade-up">
+                <div class="p-banners"><span class="p-banner">React</span><span class="p-banner">UI/UX</span><span class="p-banner">Responsive</span></div>
+                <h3>GastroGlow Food Site</h3>
+                <p>A high-fidelity restaurant interface designed for seamless feasting. Features interactive UI elements like testimonial sliders, dynamic reservation forms, and liquid-smooth navigation logic. Built using React.js and modern CSS practices to ensure a premium mobile-first experience for modern food enthusiasts across all devices.</p>
+            </div>
+            <div class="p-castle-card" data-aos="fade-up">
+                <div class="p-banners"><span class="p-banner">HTML/CSS</span><span class="p-banner">JS</span><span class="p-banner">Fitness</span></div>
+                <h3>FlexForge Fitness UI</h3>
+                <p>Responsive fitness landing page focusing on modern design and accessible UI components for trainer profiles and service modules. Optimized for fast resource loading and cross-browser compatibility, featuring specialized lead generation forms and interactive service maps for efficient gym management.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: ACHIEVEMENTS WITH GOT EFFECTS -->
+    <section id="achievements" style="background: linear-gradient(180deg, #030303 0%, #000000 100%);">
+        <h2 class="sec-title">Achievements & Honors</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card" data-aos="zoom-in">
+                <i class="fas fa-trophy"></i>
+                <h4>Top Performer</h4>
+                <p>Recognized as top performer in Data Science cohort at ExcelR for exceptional project delivery and technical excellence.</p>
+            </div>
+            <div class="achievement-card" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-crown"></i>
+                <h4>Best Project Award</h4>
+                <p>Won Best Mini-Project Award for Resume Classification AI with 92% accuracy in real-world testing scenarios.</p>
+            </div>
+            <div class="achievement-card" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-certificate"></i>
+                <h4>Certified Professional</h4>
+                <p>Certified in Advanced React Development, Python for Data Science, and Full-Stack Web Development from recognized institutions.</p>
+            </div>
+            <div class="achievement-card" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-users"></i>
+                <h4>Community Leader</h4>
+                <p>Led 15+ blood donation camps as Red Cross Youth Wing volunteer, impacting over 500+ lives through organized healthcare initiatives.</p>
+            </div>
+            <div class="achievement-card" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fas fa-code"></i>
+                <h4>100+ Projects</h4>
+                <p>Successfully delivered 100+ coding projects across web development, data analysis, and machine learning domains during academic tenure.</p>
+            </div>
+            <div class="achievement-card" data-aos="zoom-in" data-aos-delay="500">
+                <i class="fas fa-star"></i>
+                <h4>Academic Excellence</h4>
+                <p>Maintained distinction throughout BCA program with special recognition in Advanced Web Technologies and Database Management.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: TESTIMONIALS -->
+    <section style="background: #020202;">
+        <h2 class="sec-title">Words from Mentors</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card" data-aos="fade-up">
+                <p class="testimonial-text">"Noor demonstrated exceptional aptitude in mastering complex data science concepts. Her ability to bridge theoretical knowledge with practical implementation sets her apart. The Resume Classification project she built showcased professional-grade engineering skills."</p>
+                <div class="testimonial-author">
+                    <div style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); background: linear-gradient(135deg, #c5a059, #8b7355); display: flex; align-items: center; justify-content: center; color: #000; font-weight: 900; font-size: 1.5rem;">DS</div>
+                    <div class="author-info">
+                        <h5>Dr. Senthil Kumar</h5>
+                        <p>Lead Instructor, ExcelR Solutions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <p class="testimonial-text">"Working with Noor on the Cloud Drops security project revealed her deep understanding of encryption protocols and database architecture. She approaches problems methodically and delivers solutions that exceed expectations consistently."</p>
+                <div class="testimonial-author">
+                    <div style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); background: linear-gradient(135deg, #c5a059, #8b7355); display: flex; align-items: center; justify-content: center; color: #000; font-weight: 900; font-size: 1.5rem;">PR</div>
+                    <div class="author-info">
+                        <h5>Prof. Ramesh Patil</h5>
+                        <p>Project Guide, Bapuji Institute</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" style="background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);">
+        <h2 class="sec-title">Get In Touch</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.2rem; color: var(--dim); margin-bottom: 50px; line-height: 2;">
+                Ready to collaborate on your next big project? Whether it's building intelligent web applications or diving deep into data insights, let's create something extraordinary together.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 30px; margin-bottom: 50px;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 20px; font-size: 1.1rem;">
+                    <i class="fas fa-envelope" style="color: var(--gold); font-size: 1.5rem;"></i>
+                    <a href="mailto:noorfathimawork@gmail.com" style="color: var(--text); text-decoration: none; transition: 0.3s;">noorfathimawork@gmail.com</a>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 20px; font-size: 1.1rem;">
+                    <i class="fas fa-phone" style="color: var(--gold); font-size: 1.5rem;"></i>
+                    <span style="color: var(--text);">+91 7338025541</span>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 20px; font-size: 1.1rem;">
+                    <i class="fas fa-map-marker-alt" style="color: var(--gold); font-size: 1.5rem;"></i>
+                    <span style="color: var(--text);">Davanagere, Bangalore, Karnataka</span>
+                </div>
+            </div>
+            <a href="mailto:noorfathimawork@gmail.com" class="crown-btn" style="font-size: 1rem;">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <h2 style="font-family:'Cinzel'; font-size: 3rem; color:var(--gold); margin-bottom: 50px; letter-spacing: -2px;">Let's Connect.</h2>
+        <div style="margin-bottom: 60px;">
+            <a href="https://linkedin.com/in/noorfathima" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/noorfathima" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="mailto:noorfathimawork@gmail.com" class="social-link"><i class="fas fa-envelope-open-text"></i></a>
+        </div>
+        <p style="font-size: 1.1rem; margin-top: 40px;">+91 7338025541 | Davanagere, Bangalore, Karnataka</p>
+        <p style="margin-top: 30px; opacity: 0.4; letter-spacing: 5px; font-weight: 700;">© 2026 NOOR FATHIMA | ALL RIGHTS RESERVED</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, once: true });
+
+        // Create floating snow particles for GOT atmosphere
+        function createSnowParticles() {
+            const particleCount = 30;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'snow-particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                document.body.appendChild(particle);
+            }
+        }
+        createSnowParticles();
+
+        // Dragon pulse animation for intro
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes dragon-pulse {
+                0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px var(--gold)); }
+                50% { transform: scale(1.1); filter: drop-shadow(0 0 50px var(--gold)); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // FIX 1: AUDIO DURATION INCREASED TO 8 SECONDS
+        let audioStarted = false;
+
+        function startIntroAudio() {
+            if (audioStarted) return;
+            audioStarted = true;
+
+            const audio = document.getElementById('got-theme');
+            const btn = document.getElementById('audio-unlock-btn');
+            const bars = document.getElementById('audio-bars-el');
+            const overlay = document.getElementById('intro-overlay');
+
+            btn.style.opacity = '0';
+            btn.style.transition = 'opacity 0.4s';
+            setTimeout(() => { btn.style.display = 'none'; }, 400);
+            bars.style.opacity = '1';
+            bars.style.transition = 'opacity 0.5s';
+
+            if (audio) {
+                audio.volume = 0.8;
+                audio.currentTime = 0;
+                audio.play().catch(e => console.warn('Audio play failed:', e));
+                // CHANGED: Audio plays for 8 seconds instead of 5
+                setTimeout(() => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }, 8000);
+            }
+
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                setTimeout(() => { overlay.style.display = 'none'; }, 1500);
+            }, 3500);
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (!audioStarted) {
+                    const overlay = document.getElementById('intro-overlay');
+                    overlay.style.opacity = '0';
+                    setTimeout(() => { overlay.style.display = 'none'; }, 1500);
+                }
+            }, 10000);
+        });
+
+        // Scroll reveal animation for sections
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
